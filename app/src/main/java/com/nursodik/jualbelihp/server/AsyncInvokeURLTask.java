@@ -31,6 +31,8 @@ public class AsyncInvokeURLTask extends AsyncTask<Void, Void, String> {
     public Context applicationContext;
     public static interface OnPostExecuteListener{
         void onPostExecute(String result);
+
+        void OnPostExecute(String result);
     }
     public AsyncInvokeURLTask(ArrayList<NameValuePair> nameValuePairs, OnPostExecuteListener postExecuteListener) throws Exception {
         mParams = nameValuePairs;

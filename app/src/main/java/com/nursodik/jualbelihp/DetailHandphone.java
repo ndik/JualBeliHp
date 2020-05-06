@@ -57,7 +57,7 @@ public class DetailHandphone extends AppCompatActivity {
             goToMainActivity();
             break;
             case R.id.action_menu_edit:
-                Intent in = new Intent(getApplicationContext(), FormHandphone.class);
+                Intent in = new Intent(getApplicationContext(), FormHeadphone.class);
                 in.putExtra("id", handphone.getId().toString());
                 in.putExtra("nama", handphone.getNama());
                 in.putExtra("harga", handphone.getHarga());
@@ -108,6 +108,11 @@ public class DetailHandphone extends AppCompatActivity {
                     }else{
                         goToMainActivity();
                     }
+                }
+
+                @Override
+                public void OnPostExecute(String result) {
+
                 }
             });
             task.showdialog=true;

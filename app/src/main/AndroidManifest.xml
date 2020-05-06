@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.nursodik.jualbelihp.FormHandphone"
+            android:name="com.nursodik.jualbelihp.FormHeadphone"
             android:label="@string/title_activity_add_new">
         </activity>
         <activity

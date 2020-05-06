@@ -21,6 +21,7 @@ import androidx.core.view.MenuItemCompat;
 import com.nursodik.jualbelihp.adapter.ListAdapterHandphone;
 import com.nursodik.jualbelihp.model.Handphone;
 import com.nursodik.jualbelihp.server.AsyncInvokeURLTask;
+import com.nursodik.jualbelihp.server.AsyncInvokeURLTask.OnPostExecuteListener;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         loadDataHP();
     }
     private void showUpdateForm() {
-        Intent in = new Intent(getApplicationContext(), FormHandphone.class);in.putExtra("id", selectedList.getId().toString());
+        Intent in = new Intent(getApplicationContext(), FormHeadphone.class);in.putExtra("id", selectedList.getId().toString());
         in.putExtra("nama", selectedList.getNama());
         in.putExtra("harga", selectedList.getHarga());
         startActivity(in);
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         switch (item.getItemId()) {
             case R.id.option_menu_new:
                 Intent in = new Intent(getApplicationContext(),
-                        FormHandphone.class);
+                        FormHeadphone.class);
                 startActivity(in);
                 break;
         }
@@ -182,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void loadDataHP() {
         try {
             ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(0);
-            AsyncInvokeURLTask task = new AsyncInvokeURLTask(nameValuePairs, new AsyncInvokeURLTask.OnPostExecuteListener() {
+            AsyncInvokeURLTask task = new AsyncInvokeURLTask(nameValuePairs, new OnPostExecuteListener() {
                 @Override
                 public void onPostExecute(String result) {
 //TODO Auto-generated method stub
@@ -193,6 +194,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     processResponse(result);
                     populateListView();
                 }
+                }
+
+                @Override
+                public void OnPostExecute(String result) {
+
                 }
             });
         task.showdialog = true;
@@ -208,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         try {
             ArrayList<NameValuePair> nameValuePairs = new
                     ArrayList<NameValuePair>(0);
-            AsyncInvokeURLTask task = new AsyncInvokeURLTask(nameValuePairs, new AsyncInvokeURLTask.OnPostExecuteListener() {
+            AsyncInvokeURLTask task = new AsyncInvokeURLTask(nameValuePairs, new OnPostExecuteListener() {
                 @Override
                 public void onPostExecute(String result) {
 // TODO Auto-generated method stub
@@ -220,7 +226,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         populateListView();
                     }
                 }
-        });
+
+                @Override
+                public void OnPostExecute(String result) {
+
+                }
+            });
         task.showdialog = true;
         task.message = "Load Data HP Harap Tunggu..";
         task.applicationContext = MainActivity.this;
